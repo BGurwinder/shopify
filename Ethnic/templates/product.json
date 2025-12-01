@@ -1,0 +1,84 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "simple-slider": {
+      "type": "simple-slider",
+      "blocks": {
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-1.webp"
+          }
+        },
+        "slide-2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-2.webp"
+          }
+        },
+        "slide-3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-3.webp"
+          }
+        },
+        "slide-4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-4.webp"
+          }
+        },
+        "slide-5": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-5.webp"
+          }
+        },
+        "slide-6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-6.webp"
+          }
+        },
+        "slide-7": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-7.webp"
+          }
+        },
+        "slide-8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-8.webp"
+          }
+        }
+      },
+      "block_order": [
+        "slide-1",
+        "slide-2",
+        "slide-3",
+        "slide-4",
+        "slide-5",
+        "slide-6",
+        "slide-7",
+        "slide-8"
+      ],
+      "settings": {
+      }
+    },
+    "product-slider-1": {
+      "type": "product-slider",
+      "settings": {
+        "title": "Just Arrived"
+      }
+    },
+  },
+  "order": [
+    "main",
+    "simple-slider",
+    "product-slider-1",
+  ]
+}

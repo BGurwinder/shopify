@@ -1,0 +1,170 @@
+<div class="banner-section page-width">
+  {% assign banner_image = section.settings.image %}
+  {% assign target_collection = section.settings.collection %}
+
+  {% if target_collection == blank %}
+    {% assign target_collection = collections.all %}
+  {% endif %}
+
+  {% if banner_image == blank %}
+    {% assign banner_image = target_collection.image %}
+  {% endif %}
+
+  {% if banner_image != blank %}
+    <div class="banner-media media">
+      {{ banner_image | image_url: width: 1500 | image_tag: loading: 'lazy', class: 'banner-bg-image' }}
+    </div>
+  {% else %}
+    <div class="banner-media media">
+      <img
+        src="{{ 'images/default-banner.png' | asset_url }}"
+        alt="Default Banner"
+        class="banner-bg-image"
+        loading="lazy"
+        width="1500"
+        height="800"
+      >
+    </div>
+  {% endif %}
+  <div class="banner-content content-container center" style="color: {{ section.settings.color_text }}">
+    {% assign heading = section.settings.heading %}
+    {% if heading == blank %}
+      {% assign heading = target_collection.title %}
+    {% endif %}
+
+    {% if heading != blank %}
+      <h2
+        class="banner-heading h1"
+        style="color: {{ section.settings.color_text }}; font-size: {{ section.settings.heading_size }}px; font-style: {{ section.settings.heading_style }};"
+      >
+        {{ heading }}
+      </h2>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <div
+        class="banner-text rte"
+        style="font-size: {{ section.settings.text_size }}px; font-style: {{ section.settings.text_style }};"
+      >
+        {{ section.settings.text }}
+      </div>
+    {% endif %}
+
+    {% assign button_link = section.settings.button_link %}
+    {% if button_link == blank %}
+      {% assign button_link = target_collection.url %}
+    {% endif %}
+
+    {% if section.settings.button_label != blank %}
+      <a href="{{ button_link }}" class="button button--primary">
+        {{ section.settings.button_label }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection (Optional Fallback)"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "Heading Font Style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "The New Drop",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Give customers details about the banner image(s) or content on the template.</p>",
+      "label": "Text"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Font Size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "text_style",
+      "label": "Text Font Style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Shop Now",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner",
+      "settings": {
+        "collection": "all"
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "banner": {
+      "type": "banner",
+      "settings": {
+        "heading": "EVERYDAY ELEGANCE",
+        "text": "<p>Step out of the shadows and into the spotlight. Our latest collection isn't just about fabric—it's about presence. Bold prints, striking silhouettes, and colors that command attention. Don't just dress up, show up.</p>",
+        "heading_size": 60,
+        "heading_style": "italic",
+        "text_size": 16,
+        "color_text": "#ffffff",
+        "image": "shopify:\/\/shop_images\/uploaded_image_1764317628005.png"
+      }
+    },
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "items_per_page": 12,
+        "columns_desktop": 4,
+        "columns_mobile": "2"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main"
+  ]
+}

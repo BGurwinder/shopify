@@ -1,0 +1,170 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero"
+    },
+    "product-slider-1": {
+      "type": "product-slider",
+      "settings": {
+        "title": "Just Arrived"
+      }
+    },
+    "banner": {
+      "type": "banner"
+    },
+    "product-slider-2": {
+      "type": "product-slider",
+      "settings": {
+        "title": "Most Popular"
+      }
+    },
+    "big-text": {
+      "type": "big-text"
+    },
+    "product-slider-3": {
+      "type": "product-slider",
+      "settings": {
+        "title": "Best Seller"
+      }
+    },
+    "simple-slider": {
+      "type": "simple-slider",
+      "blocks": {
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-1.webp"
+          }
+        },
+        "slide-2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-2.webp"
+          }
+        },
+        "slide-3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-3.webp"
+          }
+        },
+        "slide-4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-4.webp"
+          }
+        },
+        "slide-5": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-5.webp"
+          }
+        },
+        "slide-6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-6.webp"
+          }
+        },
+        "slide-7": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-7.webp"
+          }
+        },
+        "slide-8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/carousel-8.webp"
+          }
+        }
+      },
+      "block_order": [
+        "slide-1",
+        "slide-2",
+        "slide-3",
+        "slide-4",
+        "slide-5",
+        "slide-6",
+        "slide-7",
+        "slide-8"
+      ],
+      "settings": {
+      }
+    },
+    "explore-more": {
+      "type": "explore-more",
+      "settings": {
+      }
+    },
+    "features": {
+      "type": "features",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "title": "Free Shipping",
+            "text": "<p>On all orders over $100</p>",
+            "icon_svg": "shipping"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Premium Quality",
+            "text": "<p>Certified top materials</p>",
+            "icon_svg": "quality"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Secure Payments",
+            "text": "<p>100% protected transactions</p>",
+            "icon_svg": "payment"
+          }
+        }
+      },
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3"
+      ],
+      "settings": {
+        "alignment": "center"
+      }
+    },
+    "carousel": {
+      "type": "carousel",
+      "settings": {
+        "heading": "THE NEW DROP",
+        "subtext": "<p>What everyone else will be wearing next season.<br>What you get to wear now. Be first. Be fast. Or be forgotten.</p>"
+      }
+    },
+    "two-collections": {
+      "type": "two-collections",
+      "settings": {
+        "image_height": 400,
+        "text_size": 24,
+        "text_color": "#000000",
+        "text_transform": "capitalize",
+        "text_alignment": "left",
+        "show_button": true,
+        "button_text": "Shop Now"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "product-slider-1",
+    "banner",
+    "product-slider-2",
+    "big-text",
+    "product-slider-3",
+    "carousel",
+    "simple-slider",
+    "explore-more",
+    "features",
+    "two-collections"
+  ]
+}

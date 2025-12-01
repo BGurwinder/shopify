@@ -1,0 +1,48 @@
+{{ 'custom-collection.css' | asset_url | stylesheet_tag }}
+{{ 'collection-filters.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-collection.js' | asset_url }}" defer="defer"></script>
+
+<div class="custom-collection-section page-width">
+  <div class="collection-header">
+    <h1 class="collection-title">{{ collection.title }}</h1>
+    <button class="filter-toggle-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6H20M7 12H17M10 18H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Filter
+      </div>
+  {% paginate collection.products by section.settings.products_per_page %}
+    <div class="product-grid">
+      {% for product in collection.products %}
+        {% render 'product-card', product: product %}
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <div class="pagination">
+        {{ paginate | default_pagination }}
+      </div>
+    {% endif %}
+  {% endpaginate %}
+</div>
+
+<!-- Filter Overlay -->
+{% render 'collection-filters' %}
+
+{% schema %}
+{
+  "name": "Custom Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 16,
+      "label": "Products per page"
+    }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,314 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .three-collection-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .three-collection-item {
+    width: 100%;
+    flex: 1 1 300px; /* Responsive basis */
+  }
+
+  .three-collection-image-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px; /* Matches image rounded corners */
+    margin-bottom: 20px;
+    aspect-ratio: 1 / 1.1; /* Square images as per example, or adaptable */
+  }
+
+  .three-collection-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .three-collection-image-wrapper:hover .three-collection-image {
+    transform: scale(1.05);
+  }
+
+  .three-collection-content {
+    text-align: left;
+  }
+
+  .three-collection-heading {
+    margin: 0 0 10px;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    text-transform: {{ section.settings.heading_transform }};
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+
+  .three-collection-subtext {
+    margin: 0;
+    color: {{ section.settings.subtext_color }};
+    font-size: {{ section.settings.subtext_size }}px;
+    font-weight: {{ section.settings.subtext_weight }};
+    text-transform: {{ section.settings.subtext_transform }};
+    line-height: 1.5;
+  }
+
+  .three-collection-subtext p {
+    margin: 0;
+  }
+
+  /* Mobile Adjustments */
+  @media screen and (max-width: 768px) {
+    .three-collection-wrapper {
+      flex-direction: column;
+    }
+
+    .three-collection-heading {
+      font-size: {{ section.settings.heading_size | times: 0.8 | round }}px;
+    }
+
+    .three-collection-subtext {
+      font-size: {{ section.settings.subtext_size | times: 0.9 | round }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width section-{{ section.id }}-padding">
+  <div class="three-collection-wrapper">
+    {%- for block in section.blocks -%}
+      <div class="three-collection-item" {{ block.shopify_attributes }}>
+        {%- assign collection = block.settings.collection -%}
+        {%- assign image = block.settings.image | default: collection.featured_image -%}
+
+        <a href="{{ collection.url }}" class="three-collection-link">
+          <div class="three-collection-image-wrapper">
+            {%- if image != blank -%}
+              {{
+                image
+                | image_url: width: 800
+                | image_tag: loading: 'lazy', class: 'three-collection-image', widths: '375, 550, 750, 1100'
+              }}
+            {%- else -%}
+              {{
+                'collection-'
+                | append: forloop.index
+                | placeholder_svg_tag: 'placeholder-svg three-collection-image'
+              }}
+            {%- endif -%}
+          </div>
+        </a>
+
+        <div class="three-collection-content">
+          <h3 class="three-collection-heading">
+            {%- if block.settings.heading != blank -%}
+              {{ block.settings.heading }}
+            {%- else -%}
+              {{ collection.title | default: 'Collection Title' }}
+            {%- endif -%}
+          </h3>
+
+          <div class="three-collection-subtext">
+            {%- if block.settings.subtext != blank -%}
+              {{ block.settings.subtext }}
+            {%- else -%}
+              <p>Add a description for this collection to engage your customers.</p>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Three Collections",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "heading_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "heading_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "subtext_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "subtext_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image",
+          "info": "Leave blank to use collection image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "THE COLLECTION"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "label": "Subheading",
+          "default": "<p>Description of the collection goes here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Three Collections",
+      "blocks": [
+        {
+          "type": "collection",
+          "settings": {
+            "heading": "THE POWER PLAY",
+            "subtext": "<p>This isn't workwear. It's a hostile takeover in a power suit. For the woman who runs the room, period.</p>"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "heading": "THE SPOTLIGHT",
+            "subtext": "<p>Don't just attend the event. Be the event. Audacious, unmissable pieces built to be the only thing they remember.</p>"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "heading": "THE DAILY ICON",
+            "subtext": "<p>Your \"casual\" just got a lethal upgrade. Own the street, the cafe, and every room you walk into. Effortless attitude, served daily.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
