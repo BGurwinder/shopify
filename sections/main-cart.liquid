@@ -1,0 +1,209 @@
+<div class="page-width">
+  <div class="main-cart-page">
+    <div class="cart-page__header">
+      <h1 class="cart-page__title">
+        Shopping bag <span class="cart-count-bubble">{{ cart.item_count }}</span>
+      </h1>
+    </div>
+
+    <div class="cart-page__items">
+      {% if cart.item_count > 0 %}
+        {% for item in cart.items %}
+          <div class="cart-item">
+            {% if item.image %}
+              <img
+                src="{{ item.image | image_url: width: 160 }}"
+                alt="{{ item.image.alt | escape }}"
+                class="cart-item__image"
+                width="80"
+                height="80"
+                loading="lazy"
+              >
+            {% endif %}
+
+            <div class="cart-item__details">
+              <a href="{{ item.url }}" class="cart-item__name">{{ item.product.title }}</a>
+              {% unless item.product.has_only_default_variant %}
+                <p class="cart-item__variant">{{ item.variant.title }}</p>
+              {% endunless %}
+              <div class="cart-item__price">{{ item.final_price | money }}</div>
+
+              <div class="cart-item__controls">
+                <div class="quantity-selector">
+                  <button type="button" class="qty-btn minus" data-key="{{ item.key }}" aria-label="Decrease quantity">
+                    &minus;
+                  </button>
+                  <input
+                    type="number"
+                    class="qty-input"
+                    value="{{ item.quantity }}"
+                    min="0"
+                    data-key="{{ item.key }}"
+                    aria-label="Quantity"
+                  >
+                  <button type="button" class="qty-btn plus" data-key="{{ item.key }}" aria-label="Increase quantity">
+                    &plus;
+                  </button>
+                </div>
+
+                <button type="button" class="cart-item__remove" data-key="{{ item.key }}" aria-label="Remove item">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 6H5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-cart-container">
+          <p class="empty-cart-message">Your cart is empty</p>
+          <a href="{{ routes.all_products_collection_url }}" class="button">Continue Shopping</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="cart-page__footer">
+      <div class="cart-discount">
+        <label>Discount</label>
+        <div class="discount-input-group">
+          <input type="text" class="discount-input" placeholder="Discount code">
+          <button class="discount-btn">Apply</button>
+        </div>
+      </div>
+
+      <div class="cart-total">
+        <span>Estimated total</span>
+        <span class="cart-total-price">{{ cart.total_price | money }}</span>
+      </div>
+
+      <p class="cart-tax-note">Taxes and shipping calculated at checkout.</p>
+
+      <form action="{{ routes.cart_url }}" method="post" id="cart-page-form">
+        <button
+          type="submit"
+          name="checkout"
+          class="checkout-btn"
+          {% if cart.item_count == 0 %}
+            disabled
+          {% endif %}
+        >
+          Check out
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const cartContainer = document.querySelector('.main-cart-page');
+    if (!cartContainer) return;
+
+    cartContainer.addEventListener('click', function (e) {
+      if (e.target.closest('.qty-btn')) {
+        e.preventDefault();
+        updateQuantity(e);
+      }
+      if (e.target.closest('.cart-item__remove')) {
+        e.preventDefault();
+        removeItem(e);
+      }
+    });
+
+    cartContainer.addEventListener('change', function (e) {
+      if (e.target.classList.contains('qty-input')) {
+        updateQuantityInput(e);
+      }
+    });
+
+    async function updateQuantity(e) {
+      const btn = e.target.closest('.qty-btn');
+      const input = btn.parentElement.querySelector('.qty-input');
+      const key = btn.dataset.key;
+      let quantity = parseInt(input.value);
+
+      if (btn.classList.contains('plus')) {
+        quantity++;
+      } else if (btn.classList.contains('minus')) {
+        quantity--;
+      }
+
+      if (quantity < 0) return;
+      await updateCartItem(key, quantity);
+    }
+
+    async function updateQuantityInput(e) {
+      const input = e.target;
+      const key = input.dataset.key;
+      const quantity = parseInt(input.value);
+
+      if (quantity < 0) return;
+      await updateCartItem(key, quantity);
+    }
+
+    async function removeItem(e) {
+      const btn = e.target.closest('.cart-item__remove');
+      const key = btn.dataset.key;
+      await updateCartItem(key, 0);
+    }
+
+    async function updateCartItem(key, quantity) {
+      try {
+        const res = await fetch('/cart/change.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: key,
+            quantity: quantity,
+          }),
+        });
+
+        if (res.ok) {
+          // Fetch updated section HTML
+          const sectionUrl = window.location.pathname + '?section_id=main-cart';
+          const sectionRes = await fetch(sectionUrl);
+          const sectionText = await sectionRes.text();
+
+          // Parse HTML
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(sectionText, 'text/html');
+
+          // Replace content
+          const currentItems = document.querySelector('.cart-page__items');
+          const newItems = doc.querySelector('.cart-page__items');
+          if (currentItems && newItems) {
+            currentItems.innerHTML = newItems.innerHTML;
+          }
+
+          const currentFooter = document.querySelector('.cart-page__footer');
+          const newFooter = doc.querySelector('.cart-page__footer');
+          if (currentFooter && newFooter) {
+            currentFooter.innerHTML = newFooter.innerHTML;
+          }
+
+          // Update bubble count if it exists
+          const currentBubble = document.querySelector('.cart-count-bubble');
+          const newBubble = doc.querySelector('.cart-count-bubble');
+          if (currentBubble && newBubble) {
+            currentBubble.textContent = newBubble.textContent;
+          }
+        } else {
+          console.error('Error updating cart');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "settings": []
+}
+{% endschema %}

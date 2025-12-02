@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Nu kopen"
+    }
+  },
+  "general": {
+    "continue_shopping": "Verder winkelen",
+    "search": {
+      "search": "Zoeken"
+    }
+  },
+  "accessibility": {
+    "error": "Fout"
+  },
+  "templates": {
+    "404": {
+      "title": "Pagina niet gevonden",
+      "subtext": "De pagina die u zoekt bestaat niet."
+    },
+    "cart": {
+      "cart": "Winkelwagen"
+    },
+    "contact": {
+      "form": {
+        "name": "Naam",
+        "email": "E-mail",
+        "phone": "Telefoonnummer",
+        "comment": "Opmerking",
+        "send": "Verzenden",
+        "post_success": "Bedankt dat u contact met ons hebt opgenomen. We nemen zo snel mogelijk contact met u op.",
+        "error_heading": "Corrigeer het volgende:"
+      }
+    },
+    "search": {
+      "title": "Zoekresultaten",
+      "results_with_count_and_term": "{{ count }} resultaten gevonden voor \"{{ terms }}\"",
+      "no_results": "Geen resultaten gevonden voor \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Besteldatum: {{ date }}",
+      "cancelled_html": "Bestelling geannuleerd op {{ date }}",
+      "cancelled_reason": "Reden: {{ reason }}",
+      "fulfilled_at_html": "Uitgevoerd op {{ date }}"
+    }
+  }
+}

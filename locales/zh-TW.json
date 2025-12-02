@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "立即購買"
+    }
+  },
+  "general": {
+    "continue_shopping": "繼續購物",
+    "search": {
+      "search": "搜尋"
+    }
+  },
+  "accessibility": {
+    "error": "錯誤"
+  },
+  "templates": {
+    "404": {
+      "title": "找不到頁面",
+      "subtext": "您尋找的頁面不存在。"
+    },
+    "cart": {
+      "cart": "購物車"
+    },
+    "contact": {
+      "form": {
+        "name": "姓名",
+        "email": "電子郵件",
+        "phone": "電話號碼",
+        "comment": "評論",
+        "send": "發送",
+        "post_success": "感謝您的聯繫。我們將盡快回覆您。",
+        "error_heading": "請修正以下內容："
+      }
+    },
+    "search": {
+      "title": "搜尋結果",
+      "results_with_count_and_term": "找到 {{ count }} 個關於「{{ terms }}」的結果",
+      "no_results": "找不到關於「{{ terms }}」的結果"
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "訂單日期：{{ date }}",
+      "cancelled_html": "訂單於 {{ date }} 取消",
+      "cancelled_reason": "原因：{{ reason }}",
+      "fulfilled_at_html": "於 {{ date }} 完成"
+    }
+  }
+}

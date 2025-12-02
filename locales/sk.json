@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Kúpiť teraz"
+    }
+  },
+  "general": {
+    "continue_shopping": "Pokračovať v nákupe",
+    "search": {
+      "search": "Hľadať"
+    }
+  },
+  "accessibility": {
+    "error": "Chyba"
+  },
+  "templates": {
+    "404": {
+      "title": "Stránka nenájdená",
+      "subtext": "Stránka, ktorú hľadáte, neexistuje."
+    },
+    "cart": {
+      "cart": "Košík"
+    },
+    "contact": {
+      "form": {
+        "name": "Meno",
+        "email": "E-mail",
+        "phone": "Telefónne číslo",
+        "comment": "Komentár",
+        "send": "Odoslať",
+        "post_success": "Ďakujeme, že ste nás kontaktovali. Ozveme sa vám čo najskôr.",
+        "error_heading": "Prosím, opravte nasledujúce:"
+      }
+    },
+    "search": {
+      "title": "Výsledky vyhľadávania",
+      "results_with_count_and_term": "Nájdených {{ count }} výsledkov pre \"{{ terms }}\"",
+      "no_results": "Neboli nájdené žiadne výsledky pre \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Dátum objednávky: {{ date }}",
+      "cancelled_html": "Objednávka zrušená dňa {{ date }}",
+      "cancelled_reason": "Dôvod: {{ reason }}",
+      "fulfilled_at_html": "Splnené dňa {{ date }}"
+    }
+  }
+}

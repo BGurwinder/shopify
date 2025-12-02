@@ -1,0 +1,43 @@
+/* Flying Ball Animation */
+.flying-ball {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background: #000;
+  border-radius: 50%;
+  z-index: 99999;
+  pointer-events: none;
+  transition: all 5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.add-to-cart-icon-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 3;
+  color: #000;
+}
+
+.add-to-cart-icon-btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(0) scale(1.1);
+}
+
+.product-card__image-wrapper:hover .add-to-cart-icon-btn {
+  opacity: 1;
+  transform: translateY(0);
+}

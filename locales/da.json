@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Køb nu"
+    }
+  },
+  "general": {
+    "continue_shopping": "Fortsæt med at handle",
+    "search": {
+      "search": "Søg"
+    }
+  },
+  "accessibility": {
+    "error": "Fejl"
+  },
+  "templates": {
+    "404": {
+      "title": "Side ikke fundet",
+      "subtext": "Siden du leder efter findes ikke."
+    },
+    "cart": {
+      "cart": "Indkøbskurv"
+    },
+    "contact": {
+      "form": {
+        "name": "Navn",
+        "email": "E-mail",
+        "phone": "Telefonnummer",
+        "comment": "Kommentar",
+        "send": "Send",
+        "post_success": "Tak fordi du kontaktede os. Vi vender tilbage til dig hurtigst muligt.",
+        "error_heading": "Ret venligst følgende:"
+      }
+    },
+    "search": {
+      "title": "Søgeresultater",
+      "results_with_count_and_term": "{{ count }} resultater fundet for \"{{ terms }}\"",
+      "no_results": "Ingen resultater fundet for \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Ordredato: {{ date }}",
+      "cancelled_html": "Ordre annulleret den {{ date }}",
+      "cancelled_reason": "Årsag: {{ reason }}",
+      "fulfilled_at_html": "Opfyldt den {{ date }}"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+<article class="article-template page-width" itemscope itemtype="http://schema.org/BlogPosting">
+  {%- if article.image -%}
+    <div class="article-template__hero-container">
+      <div
+        class="article-template__hero-{{ section.settings.image_height }} media"
+        itemprop="image"
+        {% if section.settings.image_height == 'adapt' and article.image %}
+          style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+        {% endif %}
+      >
+        <img
+          srcset="
+            {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+            {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+            {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+            {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+            {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+            {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+            {{ article.image | image_url }} {{ article.image.width }}w
+          "
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+          src="{{ article.image | image_url: width: 1100 }}"
+          loading="eager"
+          width="{{ article.image.width }}"
+          height="{{ article.image.height }}"
+          alt="{{ article.image.alt | escape }}"
+        >
+      </div>
+    </div>
+  {%- endif -%}
+
+  <header class="article-template__header">
+    <h1 class="article-template__title" itemprop="headline">{{ article.title | escape }}</h1>
+    <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
+      {{- article.published_at | time_tag: format: 'date' -}}
+    </span>
+    {%- if section.settings.blog_show_author -%}
+      <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">{{ article.author }}</span>
+      </span>
+    {%- endif -%}
+  </header>
+
+  <div class="article-template__content rte" itemprop="articleBody">
+    {{ article.content }}
+  </div>
+
+  <div class="article-template__back">
+    <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
+      <span class="icon-wrap">
+        <svg
+          viewBox="0 0 14 10"
+          fill="none"
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          class="icon icon-arrow"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+        </svg>
+      </span>
+      Back to blog
+    </a>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Blog post",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "default": false,
+      "label": "Show author"
+    }
+  ]
+}
+{% endschema %}

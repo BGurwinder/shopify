@@ -1,0 +1,535 @@
+{%- assign header_position = 'relative' -%}
+{%- if section.settings.enable_transparent -%}
+  {%- if section.settings.sticky_header -%}
+    {%- assign header_position = 'fixed' -%}
+  {%- else -%}
+    {%- assign header_position = 'absolute' -%}
+  {%- endif -%}
+{%- elsif section.settings.sticky_header -%}
+  {%- assign header_position = 'sticky' -%}
+{%- endif -%}
+
+{{ 'header-navigation.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .site-header {
+    --header-sticky-padding: {{ section.settings.sticky_padding }}px;
+    --header-position: {{ header_position }};
+
+    /* Border Logic */
+    {%- assign border_width = section.settings.border_width -%}
+    {%- assign border_position = section.settings.border_position -%}
+    {%- case border_position -%}
+      {%- when 'all' -%}
+        --header-border-width: {{ border_width }}px;
+      {%- when 'top' -%}
+        --header-border-width: {{ border_width }}px 0 0 0;
+      {%- when 'bottom' -%}
+        --header-border-width: 0 0 {{ border_width }}px 0;
+      {%- when 'top_bottom' -%}
+        --header-border-width: {{ border_width }}px 0 {{ border_width }}px 0;
+      {%- else -%}
+        --header-border-width: 0;
+    {%- endcase -%}
+
+    /* Sticky Border Logic */
+    {%- assign sticky_border_width = section.settings.sticky_border_width -%}
+    {%- assign sticky_border_position = section.settings.sticky_border_position -%}
+    {%- case sticky_border_position -%}
+      {%- when 'all' -%}
+        --header-sticky-border-width: {{ sticky_border_width }}px;
+      {%- when 'top' -%}
+        --header-sticky-border-width: {{ sticky_border_width }}px 0 0 0;
+      {%- when 'bottom' -%}
+        --header-sticky-border-width: 0 0 {{ sticky_border_width }}px 0;
+      {%- when 'top_bottom' -%}
+        --header-sticky-border-width: {{ sticky_border_width }}px 0 {{ sticky_border_width }}px 0;
+        --header-sticky-border-width: 0;
+    {%- endcase -%}
+  }
+</style>
+
+<header class="site-header">
+  <div class="page-width">
+    <div class="header-wrapper">
+      <button type="button" class="header-hamburger" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="header-logo">
+        <a href="{{ routes.root_url }}">
+          {% if section.settings.logo != blank %}
+            {{ section.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'main-logo-image' }}
+          {% elsif settings.logo != blank %}
+            {{
+              settings.logo
+              | image_url: width: settings.logo_width
+              | image_tag: loading: 'lazy', class: 'main-logo-image'
+            }}
+          {% else %}
+            <img
+              src="{{ 'Ethnic-logo.png' | asset_url }}"
+              alt="{{ shop.name }}"
+              width="200"
+              height="auto"
+              loading="lazy"
+              class="main-logo-image"
+            >
+          {% endif %}
+
+          {% if section.settings.sticky_logo != blank %}
+            {{
+              section.settings.sticky_logo
+              | image_url: width: 200
+              | image_tag: loading: 'lazy', class: 'sticky-logo-image'
+            }}
+          {% endif %}
+        </a>
+      </div>
+
+      <nav class="header-nav">
+        <ul class="list-unstyled">
+          {% for link in section.settings.menu.links %}
+            <li class="{% if link.links != blank %}has-mega-menu{% endif %}">
+              <a href="{{ link.url }}" class="link-styled">
+                {{ link.title }}
+                {% if link.links != blank %}
+                  <svg
+                    class="icon-dropdown"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path d="M1 1L5 5L9 1" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {% endif %}
+              </a>
+
+              {% if link.links != blank %}
+                <div class="mega-menu">
+                  <div class="mega-menu-inner">
+                    <div class="mega-menu-links">
+                      <p class="mega-menu-title">{{ link.title }}</p>
+                      <ul class="list-unstyled">
+                        {% for childlink in link.links %}
+                          <li>
+                            <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                    <div class="mega-menu-images">
+                      {% for product in collections.all.products limit: 2 %}
+                        <div class="drawer-product-card">
+                          {% render 'product-card', product: product %}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="header-icons">
+        <button type="button" class="icon-link search-trigger" aria-label="Search">
+          {% render 'icon-search' %}
+        </button>
+        {%- if shop.customer_accounts_enabled -%}
+          <a
+            href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+            class="icon-link icon-account-link"
+          >
+            {% render 'icon-account' %}
+            <span class="visually-hidden">
+              {%- if customer -%}
+                Account
+              {%- else -%}
+                Log in
+              {%- endif -%}
+            </span>
+          </a>
+        {%- endif -%}
+        <a href="{{ routes.cart_url }}" class="icon-link" id="cart-icon-bubble">
+          {% render 'icon-cart' %}
+          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          {% if cart.item_count > 0 %}
+            <span class="cart-count-bubble">{{ cart.item_count }}</span>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu-overlay"></div>
+<div class="mobile-menu-drawer">
+  <div class="mobile-menu-view mobile-menu-view-main active">
+    <div class="drawer-header">
+      <div class="drawer-logo">
+        {% if section.settings.logo != blank %}
+          {{ section.settings.logo | image_url: width: 140 | image_tag: loading: 'lazy' }}
+        {% elsif settings.logo != blank %}
+          {{ settings.logo | image_url: width: 140 | image_tag: loading: 'lazy' }}
+        {% else %}
+          <img
+            src="{{ 'Ethnic-logo.png' | asset_url }}"
+            alt="{{ shop.name }}"
+            width="140"
+            height="auto"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+      <button type="button" class="drawer-close" aria-label="Close">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="drawer-nav">
+      <ul class="list-unstyled">
+        {% for link in section.settings.menu.links %}
+          <li>
+            {% if link.links != blank %}
+              <button type="button" class="menu-drawer-trigger" data-target="submenu-{{ forloop.index }}">
+                {{ link.title }}
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M3 1L7 5L3 9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            {% else %}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="drawer-footer">
+      <h3 class="drawer-heading">New Arrivals</h3>
+      <div class="drawer-products-slider">
+        {% for product in collections.all.products limit: 4 %}
+          <div class="drawer-product-card">
+            {% render 'product-card', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% for link in section.settings.menu.links %}
+    {% if link.links != blank %}
+      <div class="mobile-menu-view mobile-menu-view-sub" id="submenu-{{ forloop.index }}">
+        <div class="drawer-header">
+          <button type="button" class="menu-drawer-back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18L9 12L15 6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+          </button>
+          <span class="drawer-title">{{ link.title }}</span>
+          <button type="button" class="drawer-close" aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <nav class="drawer-nav">
+          <ul class="list-unstyled">
+            {% for childlink in link.links %}
+              <li>
+                <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Main Menu"
+    },
+    {
+      "type": "header",
+      "content": "Header Styling"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Enable Sticky Header",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent",
+      "label": "Enable Transparent Header (Overlay)",
+      "default": false,
+      "info": "Header will sit on top of the section below it."
+    },
+    {
+      "type": "range",
+      "id": "header_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Background Opacity",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "blur_strength",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Blur Strength",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Border Settings"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "select",
+      "id": "border_position",
+      "label": "Border Position",
+      "options": [
+        {
+          "value": "all",
+          "label": "All Sides"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "top_bottom",
+          "label": "Top & Bottom"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "header",
+      "content": "Sticky Header Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "sticky_logo",
+      "label": "Sticky Logo",
+      "info": "Displayed when the header is scrolled."
+    },
+    {
+      "type": "color",
+      "id": "sticky_bg_color",
+      "label": "Sticky Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "sticky_text_color",
+      "label": "Sticky Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "sticky_icon_color",
+      "label": "Sticky Icon Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "sticky_padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Sticky Padding (Top/Bottom)",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Sticky Border Settings"
+    },
+    {
+      "type": "range",
+      "id": "sticky_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Sticky Border Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "sticky_border_color",
+      "label": "Sticky Border Color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "select",
+      "id": "sticky_border_position",
+      "label": "Sticky Border Position",
+      "options": [
+        {
+          "value": "all",
+          "label": "All Sides"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "top_bottom",
+          "label": "Top & Bottom"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "bottom"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('.site-header');
+    const isSticky = {{ section.settings.sticky_header | json }};
+    console.log('Header: Sticky enabled?', isSticky);
+
+    if (isSticky) {
+      window.addEventListener('scroll', function() {
+        console.log('Header: Scroll Y', window.scrollY);
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    }
+
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector('.header-hamburger');
+    const drawer = document.querySelector('.mobile-menu-drawer');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+    const closeBtn = document.querySelector('.drawer-close');
+
+    function toggleMenu() {
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = drawer.classList.contains('active') ? 'hidden' : '';
+    }
+
+    if (hamburger) hamburger.addEventListener('click', toggleMenu);
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+    if (overlay) overlay.addEventListener('click', toggleMenu);
+
+    // Mobile Slide-in Logic
+    const triggers = document.querySelectorAll('.menu-drawer-trigger');
+    const backBtns = document.querySelectorAll('.menu-drawer-back');
+    const mainView = document.querySelector('.mobile-menu-view-main');
+    const subViews = document.querySelectorAll('.mobile-menu-view-sub');
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const targetView = document.getElementById(targetId);
+        if (targetView) {
+          targetView.classList.add('active');
+          mainView.classList.add('slide-out');
+        }
+      });
+    });
+
+    backBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const parentView = this.closest('.mobile-menu-view-sub');
+        if (parentView) {
+          parentView.classList.remove('active');
+          mainView.classList.remove('slide-out');
+        }
+      });
+    });
+
+    // Close sub-menus when drawer closes
+    function resetMenu() {
+      subViews.forEach(view => view.classList.remove('active'));
+      if(mainView) mainView.classList.remove('slide-out');
+    }
+
+    // Hook into toggleMenu to reset
+    const originalToggle = toggleMenu;
+    toggleMenu = function() {
+      originalToggle();
+      if (!drawer.classList.contains('active')) {
+        setTimeout(resetMenu, 300); // Wait for transition
+      }
+    };
+  });
+</script>

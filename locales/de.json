@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Jetzt kaufen"
+    }
+  },
+  "general": {
+    "continue_shopping": "Weiter einkaufen",
+    "search": {
+      "search": "Suchen"
+    }
+  },
+  "accessibility": {
+    "error": "Fehler"
+  },
+  "templates": {
+    "404": {
+      "title": "Seite nicht gefunden",
+      "subtext": "Die gesuchte Seite existiert nicht."
+    },
+    "cart": {
+      "cart": "Warenkorb"
+    },
+    "contact": {
+      "form": {
+        "name": "Name",
+        "email": "E-Mail",
+        "phone": "Telefonnummer",
+        "comment": "Kommentar",
+        "send": "Senden",
+        "post_success": "Danke für Ihre Nachricht. Wir werden uns so schnell wie möglich bei Ihnen melden.",
+        "error_heading": "Bitte überprüfen Sie Folgendes:"
+      }
+    },
+    "search": {
+      "title": "Suchergebnisse",
+      "results_with_count_and_term": "{{ count }} Ergebnisse für \"{{ terms }}\" gefunden",
+      "no_results": "Keine Ergebnisse für \"{{ terms }}\" gefunden"
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Bestelldatum: {{ date }}",
+      "cancelled_html": "Bestellung storniert am {{ date }}",
+      "cancelled_reason": "Grund: {{ reason }}",
+      "fulfilled_at_html": "Erfüllt am {{ date }}"
+    }
+  }
+}

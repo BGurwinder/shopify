@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Kupi odmah"
+    }
+  },
+  "general": {
+    "continue_shopping": "Nastavi kupnju",
+    "search": {
+      "search": "Traži"
+    }
+  },
+  "accessibility": {
+    "error": "Greška"
+  },
+  "templates": {
+    "404": {
+      "title": "Stranica nije pronađena",
+      "subtext": "Stranica koju tražite ne postoji."
+    },
+    "cart": {
+      "cart": "Košarica"
+    },
+    "contact": {
+      "form": {
+        "name": "Ime",
+        "email": "E-pošta",
+        "phone": "Broj telefona",
+        "comment": "Komentar",
+        "send": "Pošalji",
+        "post_success": "Hvala što ste nas kontaktirali. Javit ćemo vam se u najkraćem mogućem roku.",
+        "error_heading": "Molimo ispravite sljedeće:"
+      }
+    },
+    "search": {
+      "title": "Rezultati pretraživanja",
+      "results_with_count_and_term": "{{ count }} rezultata pronađeno za \"{{ terms }}\"",
+      "no_results": "Nema rezultata za \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Datum narudžbe: {{ date }}",
+      "cancelled_html": "Narudžba otkazana {{ date }}",
+      "cancelled_reason": "Razlog: {{ reason }}",
+      "fulfilled_at_html": "Ispunjeno {{ date }}"
+    }
+  }
+}

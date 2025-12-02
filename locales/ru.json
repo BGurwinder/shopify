@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Купить сейчас"
+    }
+  },
+  "general": {
+    "continue_shopping": "Продолжить покупки",
+    "search": {
+      "search": "Поиск"
+    }
+  },
+  "accessibility": {
+    "error": "Ошибка"
+  },
+  "templates": {
+    "404": {
+      "title": "Страница не найдена",
+      "subtext": "Страница, которую вы ищете, не существует."
+    },
+    "cart": {
+      "cart": "Корзина"
+    },
+    "contact": {
+      "form": {
+        "name": "Имя",
+        "email": "Электронная почта",
+        "phone": "Номер телефона",
+        "comment": "Комментарий",
+        "send": "Отправить",
+        "post_success": "Спасибо, что связались с нами. Мы ответим вам как можно скорее.",
+        "error_heading": "Пожалуйста, исправьте следующее:"
+      }
+    },
+    "search": {
+      "title": "Результаты поиска",
+      "results_with_count_and_term": "Найдено {{ count }} результатов для \"{{ terms }}\"",
+      "no_results": "Результатов для \"{{ terms }}\" не найдено"
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Дата заказа: {{ date }}",
+      "cancelled_html": "Заказ отменен {{ date }}",
+      "cancelled_reason": "Причина: {{ reason }}",
+      "fulfilled_at_html": "Выполнен {{ date }}"
+    }
+  }
+}

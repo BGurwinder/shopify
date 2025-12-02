@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Acheter maintenant"
+    }
+  },
+  "general": {
+    "continue_shopping": "Continuer vos achats",
+    "search": {
+      "search": "Rechercher"
+    }
+  },
+  "accessibility": {
+    "error": "Erreur"
+  },
+  "templates": {
+    "404": {
+      "title": "Page introuvable",
+      "subtext": "La page que vous recherchez n'existe pas."
+    },
+    "cart": {
+      "cart": "Panier"
+    },
+    "contact": {
+      "form": {
+        "name": "Nom",
+        "email": "E-mail",
+        "phone": "Numéro de téléphone",
+        "comment": "Commentaire",
+        "send": "Envoyer",
+        "post_success": "Merci de nous avoir contactés. Nous vous répondrons dès que possible.",
+        "error_heading": "Veuillez corriger les éléments suivants :"
+      }
+    },
+    "search": {
+      "title": "Résultats de recherche",
+      "results_with_count_and_term": "{{ count }} résultats trouvés pour \"{{ terms }}\"",
+      "no_results": "Aucun résultat trouvé pour \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Date de la commande : {{ date }}",
+      "cancelled_html": "Commande annulée le {{ date }}",
+      "cancelled_reason": "Raison : {{ reason }}",
+      "fulfilled_at_html": "Exécutée le {{ date }}"
+    }
+  }
+}

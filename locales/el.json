@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Αγορά τώρα"
+    }
+  },
+  "general": {
+    "continue_shopping": "Συνέχεια αγορών",
+    "search": {
+      "search": "Αναζήτηση"
+    }
+  },
+  "accessibility": {
+    "error": "Σφάλμα"
+  },
+  "templates": {
+    "404": {
+      "title": "Η σελίδα δεν βρέθηκε",
+      "subtext": "Η σελίδα που αναζητάτε δεν υπάρχει."
+    },
+    "cart": {
+      "cart": "Καλάθι"
+    },
+    "contact": {
+      "form": {
+        "name": "Όνομα",
+        "email": "Email",
+        "phone": "Αριθμός τηλεφώνου",
+        "comment": "Σχόλιο",
+        "send": "Αποστολή",
+        "post_success": "Ευχαριστούμε που επικοινωνήσατε μαζί μας. Θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατό.",
+        "error_heading": "Παρακαλώ διορθώστε τα παρακάτω:"
+      }
+    },
+    "search": {
+      "title": "Αποτελέσματα αναζήτησης",
+      "results_with_count_and_term": "{{ count }} αποτελέσματα βρέθηκαν για \"{{ terms }}\"",
+      "no_results": "Δεν βρέθηκαν αποτελέσματα για \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Ημερομηνία παραγγελίας: {{ date }}",
+      "cancelled_html": "Η παραγγελία ακυρώθηκε στις {{ date }}",
+      "cancelled_reason": "Αιτία: {{ reason }}",
+      "fulfilled_at_html": "Εκπληρώθηκε στις {{ date }}"
+    }
+  }
+}

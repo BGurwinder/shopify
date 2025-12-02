@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Mua ngay"
+    }
+  },
+  "general": {
+    "continue_shopping": "Tiếp tục mua sắm",
+    "search": {
+      "search": "Tìm kiếm"
+    }
+  },
+  "accessibility": {
+    "error": "Lỗi"
+  },
+  "templates": {
+    "404": {
+      "title": "Không tìm thấy trang",
+      "subtext": "Trang bạn đang tìm kiếm không tồn tại."
+    },
+    "cart": {
+      "cart": "Giỏ hàng"
+    },
+    "contact": {
+      "form": {
+        "name": "Tên",
+        "email": "Email",
+        "phone": "Số điện thoại",
+        "comment": "Bình luận",
+        "send": "Gửi",
+        "post_success": "Cảm ơn bạn đã liên hệ với chúng tôi. Chúng tôi sẽ phản hồi bạn sớm nhất có thể.",
+        "error_heading": "Vui lòng sửa các lỗi sau:"
+      }
+    },
+    "search": {
+      "title": "Kết quả tìm kiếm",
+      "results_with_count_and_term": "Tìm thấy {{ count }} kết quả cho \"{{ terms }}\"",
+      "no_results": "Không tìm thấy kết quả cho \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Ngày đặt hàng: {{ date }}",
+      "cancelled_html": "Đơn hàng đã hủy vào {{ date }}",
+      "cancelled_reason": "Lý do: {{ reason }}",
+      "fulfilled_at_html": "Hoàn thành vào {{ date }}"
+    }
+  }
+}

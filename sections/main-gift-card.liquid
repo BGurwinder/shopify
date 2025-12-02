@@ -1,0 +1,197 @@
+{% schema %}
+{
+  "name": "Gift Card",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Headings"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Here's your gift card!"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "label": "Heading Font Weight",
+      "default": 700
+    },
+    {
+      "type": "header",
+      "content": "Subtext"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext_text",
+      "label": "Subtext",
+      "default": "Use this code at checkout to redeem your gift card."
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtext Font Size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "page_bg",
+      "label": "Page Background",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "header",
+      "content": "Price Badge"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg",
+      "label": "Badge Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "badge_text",
+      "label": "Badge Text Color",
+      "default": "#000000"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .gift-card-page {
+    background-color: {{ section.settings.page_bg }};
+  }
+  .gift-card-card {
+    background-color: {{ section.settings.card_bg }};
+  }
+  .gift-card-header h1 {
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+  }
+  .gift-card-header p {
+    color: {{ section.settings.subtext_color }};
+    font-size: {{ section.settings.subtext_size }}px;
+  }
+  .gift-card-amount-badge {
+    background-color: {{ section.settings.badge_bg | color_modify: 'alpha', 0.9 }};
+    color: {{ section.settings.badge_text }};
+  }
+</style>
+
+<div class="gift-card-page">
+  <div class="gift-card-card">
+    <div class="gift-card-header">
+      <h1>{{ section.settings.heading_text }}</h1>
+      <p>{{ section.settings.subtext_text }}</p>
+    </div>
+
+    <div class="gift-card-image-wrapper">
+      <img
+        src="{{ 'gift-card/card.jpg' | shopify_asset_url }}"
+        alt="Gift card illustration"
+        width="570"
+        height="300"
+        loading="lazy"
+        class="gift-card-image"
+      >
+      <div class="gift-card-amount-badge">
+        {{ gift_card.balance | money_without_trailing_zeros }}
+      </div>
+    </div>
+
+    <div class="gift-card-code-section">
+      <div class="gift-card-code-display">
+        <input
+          type="text"
+          class="gift-card-code-input"
+          value="{{ gift_card.code | format_code }}"
+          readonly
+          id="GiftCardCode"
+        >
+        <button class="copy-code-btn" onclick="copyGiftCardCode()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Copy
+        </button>
+      </div>
+      <p id="CopySuccessMessage" class="copy-success-message">Copied to clipboard!</p>
+    </div>
+
+    <div class="gift-card-actions">
+      <a href="{{ shop.url }}" class="button gift-card-shop-btn">Start Shopping</a>
+      <a href="#" class="print-gift-card" onclick="window.print(); return false;">Print this gift card</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function copyGiftCardCode() {
+    var copyText = document.getElementById('GiftCardCode');
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(copyText.value).then(function () {
+      var successMsg = document.getElementById('CopySuccessMessage');
+      successMsg.classList.add('show');
+      setTimeout(function () {
+        successMsg.classList.remove('show');
+      }, 3000);
+    });
+  }
+</script>

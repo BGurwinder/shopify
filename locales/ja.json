@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "今すぐ購入"
+    }
+  },
+  "general": {
+    "continue_shopping": "買い物を続ける",
+    "search": {
+      "search": "検索"
+    }
+  },
+  "accessibility": {
+    "error": "エラー"
+  },
+  "templates": {
+    "404": {
+      "title": "ページが見つかりません",
+      "subtext": "お探しのページは存在しません。"
+    },
+    "cart": {
+      "cart": "カート"
+    },
+    "contact": {
+      "form": {
+        "name": "名前",
+        "email": "メールアドレス",
+        "phone": "電話番号",
+        "comment": "コメント",
+        "send": "送信",
+        "post_success": "お問い合わせありがとうございます。できるだけ早くご連絡いたします。",
+        "error_heading": "以下の項目を修正してください："
+      }
+    },
+    "search": {
+      "title": "検索結果",
+      "results_with_count_and_term": "「{{ terms }}」の検索結果が {{ count }} 件見つかりました",
+      "no_results": "「{{ terms }}」の検索結果は見つかりませんでした"
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "注文日: {{ date }}",
+      "cancelled_html": "注文は {{ date }} にキャンセルされました",
+      "cancelled_reason": "理由: {{ reason }}",
+      "fulfilled_at_html": "{{ date }} に発送済み"
+    }
+  }
+}

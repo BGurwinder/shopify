@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Şimdi Satın Al"
+    }
+  },
+  "general": {
+    "continue_shopping": "Alışverişe Devam Et",
+    "search": {
+      "search": "Ara"
+    }
+  },
+  "accessibility": {
+    "error": "Hata"
+  },
+  "templates": {
+    "404": {
+      "title": "Sayfa bulunamadı",
+      "subtext": "Aradığınız sayfa mevcut değil."
+    },
+    "cart": {
+      "cart": "Sepet"
+    },
+    "contact": {
+      "form": {
+        "name": "İsim",
+        "email": "E-posta",
+        "phone": "Telefon Numarası",
+        "comment": "Yorum",
+        "send": "Gönder",
+        "post_success": "Bizimle iletişime geçtiğiniz için teşekkür ederiz. En kısa sürede size geri döneceğiz.",
+        "error_heading": "Lütfen aşağıdakileri düzeltin:"
+      }
+    },
+    "search": {
+      "title": "Arama Sonuçları",
+      "results_with_count_and_term": "\"{{ terms }}\" için {{ count }} sonuç bulundu",
+      "no_results": "\"{{ terms }}\" için sonuç bulunamadı"
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Sipariş Tarihi: {{ date }}",
+      "cancelled_html": "Sipariş {{ date }} tarihinde iptal edildi",
+      "cancelled_reason": "Sebep: {{ reason }}",
+      "fulfilled_at_html": "{{ date }} tarihinde tamamlandı"
+    }
+  }
+}

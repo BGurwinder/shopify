@@ -1,0 +1,603 @@
+/* =========================================
+   Header & Navigation CSS
+   ========================================= */
+
+/* --- 1. Header Base Styles --- */
+.site-header {
+  padding: 1rem 0;
+  border-style: solid;
+  border-width: var(--header-border-width, 0);
+  border-color: var(--header-border-color, transparent);
+  transition: all 0.3s ease;
+  position: var(--header-position, relative);
+  top: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-nav ul {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Important: This allows the mega menu to span full width relative to the header */
+.header-nav > ul > li {
+  position: static;
+}
+
+.header-nav .link-styled {
+  color: var(--header-text-color, #000);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Icon rotation on hover */
+.header-nav .icon-dropdown {
+  transition: transform 0.3s ease;
+}
+
+.header-nav > ul > li:hover .icon-dropdown {
+  transform: rotate(180deg);
+}
+
+.header-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.header-icons .icon-link {
+  color: var(--header-icon-color, #000);
+  position: relative;
+  background: transparent;
+  border: none;
+}
+
+.header-icons .icon {
+  width: 24px;
+  height: 24px;
+  stroke: var(--header-icon-color, #000);
+}
+
+.header-icons .cart-count-bubble {
+  position: absolute;
+  top: -8px;
+  right: -5px;
+  background-color: #000;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Hamburger (Visible on mobile) */
+.header-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+}
+
+/* --- 2. Sticky Header State --- */
+.site-header.scrolled {
+  background-color: var(--header-sticky-bg, #fff) !important;
+  padding-top: var(--header-sticky-padding, 1rem);
+  padding-bottom: var(--header-sticky-padding, 1rem);
+  backdrop-filter: none;
+  border-width: var(--header-sticky-border-width, 0) !important;
+  border-color: var(--header-sticky-border-color, transparent) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.site-header.scrolled .header-nav .link-styled {
+  color: var(--header-sticky-text-color, #000);
+}
+
+.site-header.scrolled .header-icons .icon-link {
+  color: var(--header-sticky-icon-color, #000);
+}
+
+.site-header.scrolled .header-icons .icon {
+  stroke: var(--header-sticky-icon-color, #000);
+}
+
+/* Logo Switching */
+.sticky-logo-image {
+  display: none;
+}
+.site-header.scrolled .main-logo-image {
+  display: none;
+}
+.site-header.scrolled .sticky-logo-image {
+  display: block;
+}
+
+button.drawer-close {
+  border-radius: 19px;
+  padding-top: 5px;
+  border: none;
+}
+
+/* --- 3. Mega Menu --- */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0; /* Or 50% / translateX(-50%) if you want it centered */
+  width: 60vw; /* Adjust to 100% if you want full width */
+  justify-self: center; /* anchor-center is not fully supported in all browsers yet */
+  background: #fff;
+  border-radius: 10px;
+  border-top: 1px solid #8c8c8c;
+  padding: 2rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 40;
+  box-shadow: 0 4px 12px rgba(124, 124, 124, 0.05);
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+}
+
+.has-mega-menu:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mega-menu-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 0 2rem;
+}
+
+.mega-menu-links {
+  flex: 1;
+  max-width: 300px;
+  border-right: 1px solid #eee;
+  padding-right: 2rem;
+}
+
+.mega-menu-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: var(--font-heading-weight);
+}
+
+.mega-menu-links ul li {
+  margin-bottom: 0.8rem;
+}
+
+.mega-menu-links a {
+  color: #333;
+  transition: color 0.2s;
+}
+
+.mega-menu-links a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.mega-menu-images {
+  flex: 2;
+  display: flex;
+  gap: 2rem;
+  width: auto;
+  scrollbar-width: none;
+  overflow-y: hidden;
+}
+
+.mega-menu-image-card {
+  display: block;
+  text-align: center;
+  width: 200px;
+}
+
+.mega-menu-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.mega-menu-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.mega-menu-image-card:hover .mega-menu-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.mega-menu-image-card span {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 1.1rem;
+}
+
+/* --- 4. Mobile Menu Drawer --- */
+.mobile-menu-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  background: #fff;
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu-drawer.active {
+  transform: translateX(0);
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sliding Views (Main vs Submenu) */
+.mobile-menu-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.mobile-menu-view-main {
+  z-index: 1;
+  transform: translateX(0);
+}
+
+.mobile-menu-view-main.slide-out {
+  transform: translateX(-20%);
+  opacity: 0.8;
+}
+
+.mobile-menu-view-sub {
+  z-index: 2;
+  transform: translateX(100%);
+}
+
+.mobile-menu-view-sub.active {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.drawer-nav {
+  flex: 1;
+  max-height: min-content;
+  padding: 1.5rem;
+}
+
+.drawer-nav ul li {
+  margin-bottom: 1.5rem;
+}
+
+.drawer-nav a,
+.menu-drawer-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 24px;
+  color: #000;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.menu-drawer-back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* --- 5. Drawer Footer & Products (Unique Content) --- */
+.drawer-footer {
+  padding: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.drawer-heading {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #121212;
+  font-weight: var(--font-heading-weight);
+}
+
+.drawer-products-slider {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.drawer-products-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.drawer-product-card {
+  flex: 0 0 160px;
+  scroll-snap-align: start;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.drawer-product-card:hover {
+  transform: translateY(-3px);
+}
+
+.drawer-product-card .product-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-product-card .product-card__image-wrapper {
+  aspect-ratio: 1/1;
+  border-radius: 0;
+}
+
+.drawer-product-card .product-card__info {
+  padding: 0.8rem;
+  text-align: left;
+}
+
+.drawer-product-card .product-card__title {
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.drawer-product-card .product-card__price {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Hide extra elements in drawer cards */
+.drawer-product-card .card-slider-arrow,
+.drawer-product-card .add-to-cart-icon-btn {
+  display: none !important;
+}
+
+.drawer-logo img {
+  max-height: 40px;
+  width: auto;
+  display: block;
+}
+
+.drawer-logo .drawer-title {
+  font-size: 1.2rem;
+  font-weight: var(--font-heading-weight);
+  font-family: var(--font-heading);
+}
+
+/* --- 6. Mobile Bottom Nav --- */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  z-index: 999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #666;
+  font-size: 10px;
+  gap: 4px;
+  flex: 1;
+  position: relative;
+}
+
+.mobile-nav-item.active {
+  color: #000;
+  font-weight: 600;
+}
+
+.mobile-nav-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.mobile-nav-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 1.5;
+}
+
+.mobile-cart-count {
+  position: absolute;
+  top: -5px;
+  right: 25%;
+  background-color: #000;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+/* --- 7. Mobile Search Overlay --- */
+.mobile-search-overlay {
+  position: fixed;
+  top: -100vh;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.98);
+  z-index: 998;
+  transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-search-overlay.active {
+  top: 0;
+}
+
+.mobile-search-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.mobile-search-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.mobile-search-form {
+  width: 100%;
+}
+
+.mobile-search-input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* --- 8. Global Animations & Components --- */
+
+.mega-menu ul.list-unstyled {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 18px;
+  align-items: flex-start;
+}
+/* --- 9. Responsive Adjustments --- */
+/* Hide Mobile Bottom Nav on Desktop */
+@media screen and (min-width: 769px) {
+  .mobile-bottom-nav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .header-nav {
+    display: none;
+  }
+
+  .header-hamburger {
+    display: block;
+    margin-right: 1rem;
+  }
+
+  .header-wrapper {
+    justify-content: flex-start;
+  }
+
+  .header-logo {
+    margin: auto;
+  }
+
+  .header-icons {
+    margin-left: auto;
+  }
+}
+
+/* Hide Header Icons on Mobile (replaced by Bottom Nav) */
+@media screen and (max-width: 768px) {
+  .header-icons .search-trigger,
+  .header-icons #cart-icon-bubble {
+    display: none;
+  }
+}

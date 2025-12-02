@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "ซื้อเลย"
+    }
+  },
+  "general": {
+    "continue_shopping": "ซื้อสินค้าต่อ",
+    "search": {
+      "search": "ค้นหา"
+    }
+  },
+  "accessibility": {
+    "error": "ข้อผิดพลาด"
+  },
+  "templates": {
+    "404": {
+      "title": "ไม่พบหน้า",
+      "subtext": "หน้าที่คุณกำลังมองหาไม่มีอยู่"
+    },
+    "cart": {
+      "cart": "รถเข็น"
+    },
+    "contact": {
+      "form": {
+        "name": "ชื่อ",
+        "email": "อีเมล",
+        "phone": "หมายเลขโทรศัพท์",
+        "comment": "ความคิดเห็น",
+        "send": "ส่ง",
+        "post_success": "ขอบคุณที่ติดต่อเรา เราจะติดต่อกลับโดยเร็วที่สุด",
+        "error_heading": "โปรดแก้ไขสิ่งต่อไปนี้:"
+      }
+    },
+    "search": {
+      "title": "ผลการค้นหา",
+      "results_with_count_and_term": "พบ {{ count }} ผลลัพธ์สำหรับ \"{{ terms }}\"",
+      "no_results": "ไม่พบผลลัพธ์สำหรับ \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "วันที่สั่งซื้อ: {{ date }}",
+      "cancelled_html": "คำสั่งซื้อถูกยกเลิกเมื่อ {{ date }}",
+      "cancelled_reason": "เหตุผล: {{ reason }}",
+      "fulfilled_at_html": "ดำเนินการเมื่อ {{ date }}"
+    }
+  }
+}

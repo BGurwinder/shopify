@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Cumpără acum"
+    }
+  },
+  "general": {
+    "continue_shopping": "Continuă cumpărăturile",
+    "search": {
+      "search": "Căutare"
+    }
+  },
+  "accessibility": {
+    "error": "Eroare"
+  },
+  "templates": {
+    "404": {
+      "title": "Pagina nu a fost găsită",
+      "subtext": "Pagina pe care o căutați nu există."
+    },
+    "cart": {
+      "cart": "Coș"
+    },
+    "contact": {
+      "form": {
+        "name": "Nume",
+        "email": "E-mail",
+        "phone": "Număr de telefon",
+        "comment": "Comentariu",
+        "send": "Trimite",
+        "post_success": "Vă mulțumim că ne-ați contactat. Vă vom răspunde cât mai curând posibil.",
+        "error_heading": "Vă rugăm să corectați următoarele:"
+      }
+    },
+    "search": {
+      "title": "Rezultatele căutării",
+      "results_with_count_and_term": "{{ count }} rezultate găsite pentru \"{{ terms }}\"",
+      "no_results": "Niciun rezultat găsit pentru \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Data comenzii: {{ date }}",
+      "cancelled_html": "Comandă anulată pe {{ date }}",
+      "cancelled_reason": "Motiv: {{ reason }}",
+      "fulfilled_at_html": "Îndeplinită pe {{ date }}"
+    }
+  }
+}

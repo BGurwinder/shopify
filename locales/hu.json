@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Vásárlás most"
+    }
+  },
+  "general": {
+    "continue_shopping": "Vásárlás folytatása",
+    "search": {
+      "search": "Keresés"
+    }
+  },
+  "accessibility": {
+    "error": "Hiba"
+  },
+  "templates": {
+    "404": {
+      "title": "Az oldal nem található",
+      "subtext": "A keresett oldal nem létezik."
+    },
+    "cart": {
+      "cart": "Kosár"
+    },
+    "contact": {
+      "form": {
+        "name": "Név",
+        "email": "E-mail",
+        "phone": "Telefonszám",
+        "comment": "Megjegyzés",
+        "send": "Küldés",
+        "post_success": "Köszönjük, hogy felvette velünk a kapcsolatot. Hamarosan válaszolunk.",
+        "error_heading": "Kérjük, javítsa a következőket:"
+      }
+    },
+    "search": {
+      "title": "Keresési eredmények",
+      "results_with_count_and_term": "{{ count }} találat erre: \"{{ terms }}\"",
+      "no_results": "Nincs találat erre: \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Rendelés dátuma: {{ date }}",
+      "cancelled_html": "Rendelés törölve: {{ date }}",
+      "cancelled_reason": "Ok: {{ reason }}",
+      "fulfilled_at_html": "Teljesítve: {{ date }}"
+    }
+  }
+}

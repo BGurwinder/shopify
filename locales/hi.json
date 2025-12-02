@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "अभी खरीदें"
+    }
+  },
+  "general": {
+    "continue_shopping": "खरीदारी जारी रखें",
+    "search": {
+      "search": "खोजें"
+    }
+  },
+  "accessibility": {
+    "error": "त्रुटि"
+  },
+  "templates": {
+    "404": {
+      "title": "पृष्ठ नहीं मिला",
+      "subtext": "वह पृष्ठ मौजूद नहीं है जिसे आप खोज रहे हैं।"
+    },
+    "cart": {
+      "cart": "कार्ट"
+    },
+    "contact": {
+      "form": {
+        "name": "नाम",
+        "email": "ईमेल",
+        "phone": "फ़ोन नंबर",
+        "comment": "टिप्पणी",
+        "send": "भेजें",
+        "post_success": "हमसे संपर्क करने के लिए धन्यवाद। हम जल्द से जल्द आपसे संपर्क करेंगे।",
+        "error_heading": "कृपया निम्नलिखित को ठीक करें:"
+      }
+    },
+    "search": {
+      "title": "खोज परिणाम",
+      "results_with_count_and_term": "\"{{ terms }}\" के लिए {{ count }} परिणाम मिले",
+      "no_results": "\"{{ terms }}\" के लिए कोई परिणाम नहीं मिला"
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "ऑर्डर की तारीख: {{ date }}",
+      "cancelled_html": "ऑर्डर {{ date }} को रद्द कर दिया गया",
+      "cancelled_reason": "कारण: {{ reason }}",
+      "fulfilled_at_html": "{{ date }} को पूरा किया गया"
+    }
+  }
+}

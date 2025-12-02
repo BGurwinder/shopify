@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Osta nyt"
+    }
+  },
+  "general": {
+    "continue_shopping": "Jatka ostoksia",
+    "search": {
+      "search": "Hae"
+    }
+  },
+  "accessibility": {
+    "error": "Virhe"
+  },
+  "templates": {
+    "404": {
+      "title": "Sivua ei löytynyt",
+      "subtext": "Etsimääsi sivua ei ole olemassa."
+    },
+    "cart": {
+      "cart": "Ostoskori"
+    },
+    "contact": {
+      "form": {
+        "name": "Nimi",
+        "email": "Sähköposti",
+        "phone": "Puhelinnumero",
+        "comment": "Kommentti",
+        "send": "Lähetä",
+        "post_success": "Kiitos yhteydenotostasi. Palaamme asiaan mahdollisimman pian.",
+        "error_heading": "Korjaa seuraavat:"
+      }
+    },
+    "search": {
+      "title": "Hakutulokset",
+      "results_with_count_and_term": "{{ count }} tulosta haulle \"{{ terms }}\"",
+      "no_results": "Ei tuloksia haulle \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Tilauspäivämäärä: {{ date }}",
+      "cancelled_html": "Tilaus peruutettu {{ date }}",
+      "cancelled_reason": "Syy: {{ reason }}",
+      "fulfilled_at_html": "Toimitettu {{ date }}"
+    }
+  }
+}

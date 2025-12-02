@@ -1,0 +1,164 @@
+<style>
+  .template-404 {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: 4rem 2rem;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-heading);
+  }
+
+  .template-404__big-heading {
+    font-size: 25vw;
+    line-height: 0.8;
+    font-weight: 900;
+    margin: 0;
+    color: {{ section.settings.heading_color }};
+    letter-spacing: -0.05em;
+  }
+
+  .template-404__content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .template-404__subheading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .template-404__body {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .template-404__menu {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .template-404__menu-item {
+    display: inline-block;
+  }
+
+  .template-404__link {
+    color: {{ section.settings.text_color }};
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: opacity 0.3s;
+  }
+
+  .template-404__link:hover {
+    opacity: 0.7;
+  }
+
+  /* Add comma after items except the last one */
+  .template-404__menu-item:not(:last-child)::after {
+    content: ",";
+    margin-right: 0.2rem;
+  }
+</style>
+
+<div class="template-404">
+  <h1 class="template-404__big-heading">
+    {{ section.settings.big_heading }}
+  </h1>
+
+  <div class="template-404__content">
+    <p class="template-404__subheading">{{ section.settings.subheading }}</p>
+    <p class="template-404__body">{{ section.settings.body_text }}</p>
+
+    {% if section.settings.menu != blank %}
+      <ul class="template-404__menu">
+        {% for link in section.settings.menu.links %}
+          <li class="template-404__menu-item">
+            <a href="{{ link.url }}" class="template-404__link">
+              {{ link.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="template-404__menu">
+        <a href="{{ routes.root_url }}" class="template-404__link">HOME</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "big_heading",
+      "label": "Big Heading",
+      "default": "404"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "PAGE NOT FOUND"
+    },
+    {
+      "type": "text",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "LET'S GET YOU BACK TO THE FUN STUFF"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu Links",
+      "info": "Select a menu to display links (e.g. Works, Studio, Gallery)"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#121212"
+    }
+  ]
+}
+{% endschema %}

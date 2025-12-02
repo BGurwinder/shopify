@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "Beli Sekarang"
+    }
+  },
+  "general": {
+    "continue_shopping": "Lanjutkan Belanja",
+    "search": {
+      "search": "Cari"
+    }
+  },
+  "accessibility": {
+    "error": "Kesalahan"
+  },
+  "templates": {
+    "404": {
+      "title": "Halaman tidak ditemukan",
+      "subtext": "Halaman yang Anda cari tidak ada."
+    },
+    "cart": {
+      "cart": "Keranjang"
+    },
+    "contact": {
+      "form": {
+        "name": "Nama",
+        "email": "Email",
+        "phone": "Nomor Telepon",
+        "comment": "Komentar",
+        "send": "Kirim",
+        "post_success": "Terima kasih telah menghubungi kami. Kami akan segera menghubungi Anda kembali.",
+        "error_heading": "Harap perbaiki berikut ini:"
+      }
+    },
+    "search": {
+      "title": "Hasil Pencarian",
+      "results_with_count_and_term": "{{ count }} hasil ditemukan untuk \"{{ terms }}\"",
+      "no_results": "Tidak ada hasil ditemukan untuk \"{{ terms }}\""
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "Tanggal Pesanan: {{ date }}",
+      "cancelled_html": "Pesanan dibatalkan pada {{ date }}",
+      "cancelled_reason": "Alasan: {{ reason }}",
+      "fulfilled_at_html": "Dipenuhi pada {{ date }}"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "products": {
+    "product": {
+      "buy_now": "立即购买"
+    }
+  },
+  "general": {
+    "continue_shopping": "继续购物",
+    "search": {
+      "search": "搜索"
+    }
+  },
+  "accessibility": {
+    "error": "错误"
+  },
+  "templates": {
+    "404": {
+      "title": "未找到页面",
+      "subtext": "您查找的页面不存在。"
+    },
+    "cart": {
+      "cart": "购物车"
+    },
+    "contact": {
+      "form": {
+        "name": "姓名",
+        "email": "电子邮件",
+        "phone": "电话号码",
+        "comment": "评论",
+        "send": "发送",
+        "post_success": "感谢您的联系。我们将尽快回复您。",
+        "error_heading": "请调整以下内容："
+      }
+    },
+    "search": {
+      "title": "搜索结果",
+      "results_with_count_and_term": "找到 {{ count }} 个关于“{{ terms }}”的结果",
+      "no_results": "未找到关于“{{ terms }}”的结果"
+    }
+  },
+  "customer": {
+    "order": {
+      "date_html": "订单日期：{{ date }}",
+      "cancelled_html": "订单于 {{ date }} 取消",
+      "cancelled_reason": "原因：{{ reason }}",
+      "fulfilled_at_html": "于 {{ date }} 完成"
+    }
+  }
+}

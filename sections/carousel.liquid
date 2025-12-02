@@ -1,0 +1,251 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .carousel-title {
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    text-transform: {{ section.settings.heading_transform }};
+  }
+  #shopify-section-{{ section.id }} .carousel-subtext {
+    color: {{ section.settings.subtext_color }};
+    font-size: {{ section.settings.subtext_size }}px;
+    font-weight: {{ section.settings.subtext_weight }};
+    text-transform: {{ section.settings.subtext_transform }};
+  }
+  #shopify-section-{{ section.id }} .carousel-btn {
+    text-transform: {{ section.settings.button_transform }};
+  }
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .carousel-title {
+      font-size: {{ section.settings.heading_size | times: 0.7 | round }}px;
+    }
+    #shopify-section-{{ section.id }} .carousel-subtext {
+      font-size: {{ section.settings.subtext_size | times: 0.9 | round }}px;
+    }
+  }
+{%- endstyle -%}
+
+{{ 'carousel.css' | asset_url | stylesheet_tag }}
+
+<div class="carousel-section" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="carousel-header">
+      {% if section.settings.heading != blank %}
+        <h2 class="carousel-title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subtext != blank %}
+        <div class="carousel-subtext">{{ section.settings.subtext }}</div>
+      {% endif %}
+    </div>
+
+    <div class="carousel-container">
+      <div class="carousel-track-wrapper">
+        <div class="carousel-track" id="track-{{ section.id }}">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              <div class="carousel-slide" {{ block.shopify_attributes }}>
+                <div class="carousel-image-wrapper">
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 800
+                      | image_tag: loading: 'lazy', class: 'carousel-image', widths: '400, 600, 800, 1000'
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for i in (1..8) -%}
+              <div class="carousel-slide">
+                <div class="carousel-image-wrapper">
+                  {% assign image_name = 'carousel-images/carousel-' | append: i | append: '.webp' %}
+                  <img
+                    src="{{ image_name | asset_url }}"
+                    loading="lazy"
+                    class="carousel-image"
+                    width="800"
+                    height="auto"
+                    alt="Default Slide {{ i }}"
+                  >
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    {% if section.settings.button_text != blank %}
+      <div class="carousel-footer">
+        <a href="{{ section.settings.button_link }}" class="carousel-btn button">
+          {{- section.settings.button_text -}}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script src="{{ 'carousel.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Carousel",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "THE NEW DROP"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Heading Font Weight",
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "heading_transform",
+      "label": "Heading Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Subtext Settings"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "<p>What everyone else will be wearing next season.<br>What you get to wear now. Be first. Be fast. Or be forgotten.</p>"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtext Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "subtext_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Subtext Font Weight",
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "subtext_transform",
+      "label": "Subtext Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop The Look"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "button_transform",
+      "label": "Button Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Carousel",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

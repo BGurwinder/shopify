@@ -1,0 +1,38 @@
+<div class="main-blog page-width">
+  <h1 class="title--primary">{{ blog.title | escape }}</h1>
+
+  <div class="blog-articles">
+    {%- for article in blog.articles -%}
+      <div class="blog-article">
+        {%- if article.image -%}
+          <div class="article-card__image-wrapper">
+            <a href="{{ article.url }}">
+              {{ article.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+            </a>
+          </div>
+        {%- endif -%}
+        <div class="article-card__info">
+          <h2 class="article-card__title">
+            <a href="{{ article.url }}">{{ article.title | escape }}</a>
+          </h2>
+          <span class="article-card__date">{{ article.published_at | time_tag: format: 'date' }}</span>
+          <div class="article-card__excerpt">
+            {%- if article.excerpt.size > 0 -%}
+              {{ article.excerpt | strip_html | truncatewords: 30 }}
+            {%- else -%}
+              {{ article.content | strip_html | truncatewords: 30 }}
+            {%- endif -%}
+          </div>
+          <a href="{{ article.url }}" class="article-card__link">Read more</a>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog posts",
+  "settings": []
+}
+{% endschema %}
